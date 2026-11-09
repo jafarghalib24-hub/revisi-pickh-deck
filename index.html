@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sampai Ibu Pulang — Pitch Deck</title>
+<meta name="description" content="Program Day Care Yatim Dhuafa untuk ibu tunggal prasejahtera — by Rumah Yatim">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="stage">
+
+<!-- ====== SIMBOL SVG (dipakai berulang) ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ibu" viewBox="0 0 132 340">
+      <circle cx="60" cy="34" r="27" fill="currentColor"/>
+      <path d="M38 66Q60 55 82 66L112 306Q60 318 8 306Z" fill="currentColor"/>
+      <rect x="40" y="300" width="13" height="38" rx="6.5" fill="currentColor"/>
+      <rect x="68" y="300" width="13" height="38" rx="6.5" fill="currentColor"/>
+      <rect x="98" y="178" width="30" height="42" rx="5" fill="var(--bag,#7A4A2E)"/>
+    </symbol>
+    <symbol id="anak" viewBox="0 0 50 130">
+      <circle cx="25" cy="14" r="12" fill="currentColor"/>
+      <rect x="12" y="30" width="26" height="54" rx="7" fill="currentColor"/>
+      <rect x="14" y="80" width="9" height="46" rx="4.5" fill="currentColor"/>
+      <rect x="27" y="80" width="9" height="46" rx="4.5" fill="currentColor"/>
+    </symbol>
+    <symbol id="rumah" viewBox="0 0 420 330">
+      <rect x="298" y="40" width="34" height="80" fill="var(--roof,#3B1A14)"/>
+      <rect x="50" y="140" width="320" height="170" fill="var(--wall,#B3201F)"/>
+      <polygon points="20,152 210,20 400,152" fill="var(--roof,#3B1A14)"/>
+      <rect x="180" y="220" width="60" height="90" rx="4" fill="var(--door,#3B1A14)"/>
+      <rect x="80" y="180" width="72" height="72" fill="var(--win,#FFD98A)"/>
+      <rect x="268" y="180" width="72" height="72" fill="var(--win,#FFD98A)"/>
+      <path d="M116 180V252M80 216H152M304 180V252M268 216H340" stroke="var(--roof,#3B1A14)" stroke-width="5"/>
+    </symbol>
+
+    <symbol id="i-bowl" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 32H56C56 46 46 55 32 55C18 55 8 46 8 32Z"/><path d="M22 24C18 18 26 16 22 9M32 24C28 18 36 16 32 9M42 24C38 18 46 16 42 9"/></g></symbol>
+    <symbol id="i-book" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 15C24 10 14 10 6 12V50C14 48 24 48 32 53C40 48 50 48 58 50V12C50 10 40 10 32 15Z"/><path d="M32 15V53"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 5L54 13V32C54 46 44 56 32 60C20 56 10 46 10 32V13Z"/><path d="M32 43C22 35 22 27 28 27C30 27 32 29 32 31C32 29 34 27 36 27C42 27 42 35 32 43Z"/></g></symbol>
+    <symbol id="i-brief" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="22" width="50" height="32" rx="6"/><path d="M23 22V15H41V22M7 37H57"/><rect x="28" y="33" width="8" height="8" rx="2"/></g></symbol>
+    <symbol id="i-sprout" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 58V30"/><path d="M32 37C32 25 22 18 9 20C9 32 18 39 32 37Z"/><path d="M32 32C32 22 40 14 55 16C55 28 47 35 32 32Z"/></g></symbol>
+    <symbol id="i-sun" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="10"/><path d="M32 6V14M32 50V58M6 32H14M50 32H58M13.6 13.6L19.3 19.3M44.7 44.7L50.4 50.4M13.6 50.4L19.3 44.7M44.7 19.3L50.4 13.6"/></g></symbol>
+    <symbol id="i-fork" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6V24C14 29 18 31 20 31V58M26 6V24C26 29 22 31 20 31M20 6V24"/><path d="M46 58V6C38 12 38 30 46 34"/></g></symbol>
+    <symbol id="i-mosque" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 57V38C10 28 20 24 32 12C44 24 54 28 54 38V57Z"/><path d="M26 57V47C26 42 38 42 38 47V57"/><path d="M32 3V12"/></g></symbol>
+    <symbol id="i-play" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="13" r="8"/><path d="M21 28H43L39 43H25ZM25 43L22 59M39 43L42 59M21 28L9 17M43 28L55 17"/></g></symbol>
+    <symbol id="i-home" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 31L32 8L57 31"/><path d="M14 27V57H50V27"/><path d="M26 57V41H38V57"/></g></symbol>
+    <symbol id="i-heart" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 55C11 40 7 26 13 18C20 10 30 14 32 22C34 14 44 10 51 18C57 26 53 40 32 55Z"/></g></symbol>
+    <symbol id="i-heartf" viewBox="0 0 64 64"><path d="M32 55C11 40 7 26 13 18C20 10 30 14 32 22C34 14 44 10 51 18C57 26 53 40 32 55Z" fill="currentColor"/></symbol>
+    <symbol id="i-coin" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="23"/><path d="M32 17V47M24 26C24 21 40 21 40 28C40 35 24 29 24 37C24 43 40 43 40 38"/></g></symbol>
+    <symbol id="i-people" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="20" r="8"/><circle cx="45" cy="23" r="7"/><path d="M6 54C6 42 12 35 22 35C32 35 38 42 38 54M41 37C51 35 59 40 59 52"/></g></symbol>
+    <symbol id="i-moon" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M42 8A25 25 0 1 0 56 44A20 20 0 0 1 42 8Z"/><path d="M50 14L51.5 18.5L56 20L51.5 21.5L50 26L48.5 21.5L44 20L48.5 18.5Z"/></g></symbol>
+  </defs>
+</svg>
+
+<!-- ============================================================ -->
+<div id="slides">
+
+<!-- ================= SLIDE 1 — JUDUL ================= -->
+<section class="slide" id="s1">
+  <div class="bg">
+    <div class="sky"></div>
+    <div class="sunglow"></div>
+    <div class="sundisc"></div>
+    <svg class="bird" viewBox="0 0 60 24"><path d="M2 14Q16 -2 30 14Q44 -2 58 14" fill="none" stroke="#7A4A2E" stroke-width="4" stroke-linecap="round"/></svg>
+    <svg class="bird" viewBox="0 0 60 24"><path d="M2 14Q16 -2 30 14Q44 -2 58 14" fill="none" stroke="#7A4A2E" stroke-width="4" stroke-linecap="round"/></svg>
+    <svg class="bird" viewBox="0 0 60 24"><path d="M2 14Q16 -2 30 14Q44 -2 58 14" fill="none" stroke="#7A4A2E" stroke-width="4" stroke-linecap="round"/></svg>
+    <div class="hills" data-hills="#D3D98A|#A4B93F|#74931F|#4A6810" data-h="480"></div>
+    <svg class="fam sil" viewBox="0 0 740 390">
+      <g class="a" style="--d:1500"><use href="#anak" x="60" y="250" width="46" height="120"/></g>
+      <g class="a" style="--d:1650"><use href="#anak" x="150" y="258" width="42" height="112"/></g>
+      <g class="a" style="--d:1800"><use href="#anak" x="248" y="250" width="46" height="120"/></g>
+      <g class="a" style="--d:1350"><use href="#ibu" x="305" y="100" width="105" height="270"/></g>
+      <g class="a" style="--d:1950"><use href="#anak" x="412" y="262" width="40" height="104"/></g>
+      <g class="a" style="--d:2100"><use href="#anak" x="520" y="250" width="46" height="120"/></g>
+      <g class="a" style="--d:2250"><use href="#anak" x="620" y="256" width="44" height="114"/></g>
+    </svg>
+  </div>
+  <div class="pills a f" style="--d:200"><i></i><i></i><i></i></div>
+  <h1><span class="a" style="--d:500">Sampai</span> <span class="a ib" style="--d:700">Ibu</span><br><span class="a" style="--d:900">Pulang</span></h1>
+  <p class="sub a" style="--d:1200">Program Day Care Yatim Dhuafa untuk ibu tunggal prasejahtera</p>
+  <div class="by a p" style="--d:1500">by Rumah Yatim</div>
+</section>
+
+<!-- ================= SLIDE 2 — MASALAH ================= -->
+<section class="slide" id="s2">
+  <div class="bg"><div class="glow"></div></div>
+  <div class="frame a l" style="--d:200">
+    <div class="stars" data-stars="14"></div>
+    <div class="moon"></div>
+    <div class="roof"></div>
+    <div class="wall"></div>
+    <div class="win"></div>
+    <svg class="kid" viewBox="0 0 50 130" style="color:#2A1218"><use href="#anak"/></svg>
+    <div class="ground"></div>
+    <div class="cone"></div>
+    <svg class="mom" viewBox="0 0 132 340"><use href="#ibu"/></svg>
+  </div>
+  <div class="head a r" style="--d:500">
+    <h2>DAY CARE YATIM DHUAFA</h2>
+    <p>Yang membantu ibu tunggal berpenghasilan rendah mengoptimalkan akses pengasuhan anak yang terjangkau.</p>
+  </div>
+  <div class="ask a" style="--d:900">Apa masalahnya?</div>
+  <div class="cards">
+    <div class="pc a r" style="--d:1200"><b class="n">1.</b><p><b>BIAYA</b> Day Care umum memberatkan bagi ibu tunggal berpenghasilan rendah.</p></div>
+    <div class="pc a r" style="--d:1700"><b class="n">2.</b><p><b>KEAMANAN</b> Day Care umum berisiko keselamatan akibat pengasuh tidak terverifikasi dan minimnya pengawasan langsung.</p></div>
+    <div class="pc a r" style="--d:2200"><b class="n">3.</b><p><b>Long-Term Impact</b> untuk pendampingan dan memaksimalkan gizi &amp; menjamintumbuh kembang fisiknya.</p></div>
+  </div>
+</section>
+
+<!-- ================= SLIDE 3 — 3 MASALAH ================= -->
+<section class="slide" id="s3">
+  <div class="bg"><div class="stars" data-stars="26" style="position:absolute;inset:0"></div></div>
+  <div class="chip a" style="--d:100">Problem Statement</div>
+  <svg class="roof a f" style="--d:200" width="1620" height="300" viewBox="0 0 1620 300"><polygon points="0,300 330,0 1290,0 1620,300" fill="#170A0D" stroke="#7E2A2A" stroke-width="4" stroke-linejoin="round"/></svg>
+  <h2 class="ttl a" style="--d:500">3 Masalah dalam 1 rumah</h2>
+  <div class="body a f" style="--d:300"></div>
+  <div class="ground"></div>
+
+  <div class="w w1" style="--d:1000">
+    <svg viewBox="0 0 400 300">
+      <g class="sway"><use href="#ibu" x="161" y="34" width="78" height="201" style="color:#2B1814"/></g>
+      <use href="#i-brief" x="22" y="96" width="96" height="96" style="color:#2B1814"/>
+      <use href="#i-play" x="282" y="96" width="96" height="96" style="color:#2B1814"/>
+      <path class="dsh" d="M148 140H126M252 140H274" stroke="#2B1814" stroke-width="6" stroke-linecap="round" fill="none"/>
+    </svg>
+    <p>Ibu terjepit dilema antara menemani anak atau bekerja</p>
+  </div>
+
+  <div class="w w2" style="--d:1700">
+    <svg viewBox="0 0 400 300">
+      <use href="#anak" x="46" y="140" width="44" height="114" style="color:#2B1814"/>
+      <g class="coin" style="--c:0"><rect x="130" y="240" width="140" height="22" rx="4" fill="#C98A1E" stroke="#2B1814" stroke-width="4"/><ellipse cx="200" cy="240" rx="70" ry="16" fill="#F4C34F" stroke="#2B1814" stroke-width="4"/></g>
+      <g class="coin" style="--c:1"><rect x="130" y="214" width="140" height="22" rx="4" fill="#C98A1E" stroke="#2B1814" stroke-width="4"/><ellipse cx="200" cy="214" rx="70" ry="16" fill="#F4C34F" stroke="#2B1814" stroke-width="4"/></g>
+      <g class="coin" style="--c:2"><rect x="130" y="188" width="140" height="22" rx="4" fill="#C98A1E" stroke="#2B1814" stroke-width="4"/><ellipse cx="200" cy="188" rx="70" ry="16" fill="#F4C34F" stroke="#2B1814" stroke-width="4"/></g>
+      <g class="coin" style="--c:3"><rect x="130" y="162" width="140" height="22" rx="4" fill="#C98A1E" stroke="#2B1814" stroke-width="4"/><ellipse cx="200" cy="162" rx="70" ry="16" fill="#F4C34F" stroke="#2B1814" stroke-width="4"/></g>
+      <g class="coin" style="--c:4"><rect x="130" y="136" width="140" height="22" rx="4" fill="#C98A1E" stroke="#2B1814" stroke-width="4"/><ellipse cx="200" cy="136" rx="70" ry="16" fill="#F4C34F" stroke="#2B1814" stroke-width="4"/></g>
+      <g class="arrow"><path d="M330 226V96M302 126L330 90L358 126" stroke="#2B1814" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+    </svg>
+    <p>Mahalnya biaya Day Care</p>
+  </div>
+
+  <div class="w w3" style="--d:2400">
+    <svg viewBox="0 0 400 300">
+      <path d="M40 170H200C200 218 168 244 120 244C72 244 40 218 40 170Z" fill="#2B1814"/>
+      <ellipse cx="120" cy="170" rx="80" ry="13" fill="#6B3F2A"/>
+      <ellipse cx="98" cy="175" rx="6" ry="3" fill="#FFE7B0"/><ellipse cx="124" cy="177" rx="6" ry="3" fill="#FFE7B0"/><ellipse cx="146" cy="174" rx="6" ry="3" fill="#FFE7B0"/>
+      <circle cx="290" cy="150" r="62" fill="#FFF3D1" stroke="#2B1814" stroke-width="8"/>
+      <path d="M290 96V108M290 192V204M236 150H248M332 150H344" stroke="#2B1814" stroke-width="6" stroke-linecap="round"/>
+      <g class="hand"><line x1="290" y1="150" x2="290" y2="104" stroke="#2B1814" stroke-width="6" stroke-linecap="round"/></g>
+      <g class="hand s"><line x1="290" y1="150" x2="322" y2="150" stroke="#2B1814" stroke-width="8" stroke-linecap="round"/></g>
+      <circle cx="290" cy="150" r="8" fill="#2B1814"/>
+    </svg>
+    <p>Gizi anak seadanya &amp; jam kosong tanpa pengawasan</p>
+  </div>
+</section>
+
+<!-- ================= SLIDE 4 — SOLUSI ================= -->
+<section class="slide" id="s4">
+  <div class="bg">
+    <div class="rays r" data-rays="22"></div>
+    <div class="hills" data-hills="#A7C05A|#86A334|#5E7B0F" data-h="300"></div>
+    <svg class="fam" viewBox="0 0 700 290">
+      <circle cx="600" cy="215" r="90" fill="rgba(255,220,130,.55)"/>
+      <use href="#rumah" x="520" y="165" width="150" height="118" style="--wall:#B3201F;--roof:#3B1A14;--win:#FFE9A6"/>
+      <g class="sil">
+        <use href="#anak" x="30" y="180" width="36" height="95"/>
+        <use href="#anak" x="110" y="188" width="34" height="88"/>
+        <use href="#ibu" x="215" y="64" width="82" height="212"/>
+        <use href="#anak" x="310" y="186" width="34" height="90"/>
+        <use href="#anak" x="400" y="178" width="38" height="98"/>
+      </g>
+    </svg>
+  </div>
+  <div class="grid">
+    <div class="sc a p" style="--d:500"><div class="ib"><svg><use href="#i-bowl"/></svg></div><h3>Gizi tercukupi</h3><p>Makan siang dan camilan sehat</p></div>
+    <div class="sc a p" style="--d:800"><div class="ib"><svg><use href="#i-book"/></svg></div><h3>Tumbuh Kembang</h3><p>Belajar, bermain, akhlak, &amp; Al-quran</p></div>
+    <div class="sc a p" style="--d:1100"><div class="ib"><svg><use href="#i-shield"/></svg></div><h3>Masa depan terlindungi</h3><p>Ruang aman dan teladan baik</p></div>
+    <div class="sc a p" style="--d:1400"><div class="ib"><svg><use href="#i-brief"/></svg></div><h3>Ibu Berdaya</h3><p>Bekerja dengan tenang</p></div>
+  </div>
+  <div class="txt">
+    <div class="row a" style="--d:300"><span class="chip">Solution</span><span class="sp"><svg><use href="#i-sprout"/></svg></span></div>
+    <h2 class="a" style="--d:600">Ruang Aman Sampai Ibu Pulang</h2>
+    <div class="yl a" style="--d:1100">Day Care Yatim Dhuafa</div>
+    <p class="ds a" style="--d:1300">Ruang pengasuhan harian terjangkau bagi anak yatim dari ibu tunggal berpenghasilan rendah.</p>
+  </div>
+</section>
+
+<!-- ================= SLIDE — VIDEO PROTOTYPE ================= -->
+<section class="slide" id="sv">
+  <div class="bg">
+    <div class="sky"></div>
+    <div class="halo"></div>
+    <div class="hills" data-hills="#E6DFA0|#BACB52|#8FAE2E" data-h="300"></div>
+    <div class="hglow"></div>
+    <svg class="home" viewBox="0 0 420 330"><use href="#rumah"/></svg>
+    <svg class="fam sil" viewBox="0 0 420 320">
+      <g class="a" style="--d:1200"><use href="#anak" x="92" y="196" width="40" height="104"/></g>
+      <g class="a" style="--d:1000"><use href="#ibu" x="150" y="58" width="94" height="242"/></g>
+      <g class="a" style="--d:1400"><use href="#anak" x="262" y="190" width="42" height="109"/></g>
+    </svg>
+  </div>
+  <div class="chip o a" style="--d:100">Prototype</div>
+  <div class="phone a p" style="--d:400">
+    <div class="screen">
+      <video id="pvid" src="assets/prototype.mp4" poster="assets/prototype-poster.jpg" playsinline preload="auto"></video>
+      <div class="pico"><i></i></div>
+      <div class="pbar"><i></i></div>
+    </div>
+    <div class="notch"></div>
+  </div>
+</section>
+
+<!-- ================= SLIDE 5 — MARKET VALIDASI ================= -->
+<section class="slide" id="s5">
+  <div class="bg"><div class="hills" data-hills="#E3DC93|#B7C648|#8BA82A" data-h="260"></div></div>
+  <div class="chip o a" style="--d:100">Market Validasi</div>
+  <div class="bar a" style="--d:300">Ibu Tunggal, Kemiskinan, &amp; Gizi Anak</div>
+
+  <div class="st st1 a" style="--d:800">
+    <small>Ibu Tunggal</small>
+    <b class="num count" data-to="12.73" data-dec="2" data-suffix="%" data-delay="900">12,73%</b>
+    <div class="pic" data-pic="houses"></div>
+    <p>Rumah tangga dikepalai perempuan, sektar 1 dari 10 keluarga (BPS, 2023)</p>
+  </div>
+  <div class="st st2 g a" style="--d:1300">
+    <small>Kebutuhan Ibu Tunggal</small>
+    <b class="num count" data-to="50" data-dec="0" data-suffix="+" data-delay="1400">50+</b>
+    <div class="pic dots" data-pic="dots"></div>
+    <p>Hasil survei mendalam dan menyatakan sangat membutuhkan akses pengasuhan anak yang aman, transparan, serta selaras dengan jam kerja atau shift mereka (Budyawati, dkk, 2023)..</p>
+  </div>
+  <div class="st st3 a" style="--d:1800">
+    <small>Gizi Anak</small>
+    <b class="num count" data-to="29.8" data-dec="1" data-suffix="%" data-delay="1900">29,8%</b>
+    <div class="pic bars"><div class="b1"></div><div class="b2"></div></div>
+    <p>Balita stunting di golongan termiskin vs 12% di golongan terkaya (SSGI, 2024)</p>
+  </div>
+</section>
+
+<!-- ================= SLIDE 6 — MARKET SIZE ================= -->
+<section class="slide" id="s6">
+  <div class="bg"><div class="hills" data-hills="#E3DC93|#B7C648|#8BA82A" data-h="260"></div></div>
+  <div class="chip o a" style="--d:100">Market Size</div>
+  <div class="panel a p" style="--d:200"></div>
+  <h2 class="a" style="--d:600">DANA SOSIAL SYARIAH:<br><em>Besar &amp; belum tergarap</em></h2>
+
+  <div class="chart a f" style="--d:900">
+    <div class="cap">per tahun, triliun rupiah</div>
+    <div class="gl" style="top:50px"></div><div class="gl" style="top:134px"></div><div class="gl" style="top:218px"></div><div class="gl" style="top:302px"></div><div class="gl" style="top:386px"></div>
+    <div class="base"></div>
+    <div class="b b1"></div>
+    <div class="ghost"></div>
+    <div class="b b2"></div>
+    <div class="v a" style="left:50px;top:6px;--d:2300;width:250px">327T</div>
+    <div class="v a" style="left:350px;top:372px;--d:2500">122M</div>
+    <div class="xl">Rumah Yatim</div>
+  </div>
+
+  <div class="stat s1 a r" style="--d:1600"><b class="count" data-prefix="Rp" data-suffix=" T" data-to="327" data-delay="1700">Rp327 T</b><span>Potensi zakat nasional per tahun (Baznas)</span></div>
+  <div class="stat s2 a r" style="--d:2000"><b class="count" data-prefix="Rp" data-suffix=" M" data-to="122" data-delay="2100">Rp122 M</b><span>Zakat terhimpun 2025, sekitar 12.5% dari potensi</span></div>
+  <div class="stat s3 a r" style="--d:2400"><b class="count" data-prefix="Rp" data-suffix=" jt" data-to="750" data-delay="2500">Rp750 jt</b><span>Kebutuhan pilot 12 bulan</span></div>
+</section>
+
+<!-- ================= SLIDE 7 — KOLABORASI ================= -->
+<section class="slide" id="s7">
+  <div class="bg">
+    <div class="sun"></div>
+    <div class="hills" data-hills="#D8E09A|#B3C95A|#8DAA32" data-h="260"></div>
+  </div>
+  <div class="chip o a" style="--d:100">Product &amp; solution</div>
+  <div class="panel a p" style="--d:200"></div>
+  <h2 class="a" style="--d:500">Kolaborasi, bukan bangun baru</h2>
+
+  <div class="stp g st1 a p" style="--d:900"><h3>Day Care dan PAUD mitra</h3><p>Bangunan dan izin</p></div>
+  <div class="arr ar1 a f" style="--d:1300"><svg viewBox="0 0 92 96"><polygon points="0,26 52,26 52,0 92,48 52,96 52,70 0,70" fill="#FFD95A"/></svg></div>
+  <div class="stp g st2 a p" style="--d:1400"><h3>Kerja sama atau akuisisi</h3><p>Lembaga mengambil alih pengelolaan, tanpa membangun gedung baru</p></div>
+  <div class="arr ar2 a f" style="--d:1800"><svg viewBox="0 0 92 96"><polygon points="0,26 52,26 52,0 92,48 52,96 52,70 0,70" fill="#FFD95A"/></svg></div>
+  <div class="stp d st3 a p" style="--d:1900"><h3>Day Care Rumah Yatim</h3><p>Dikelola lembaga: menu gizi, kurikulum akhlak, seleksi anak, &amp; laporan</p></div>
+
+  <div class="day a" style="--d:2300">Dari pagi sampai ibu pulang</div>
+  <div class="tl" style="left:640px;width:1140px">
+    <div class="ln"><i></i></div>
+    <div class="nd" style="left:0;--i:0"><div class="c"><svg><use href="#i-sun"/></svg></div><b>07.00</b><span>Disambut dan sarapan</span></div>
+    <div class="nd" style="left:190px;--i:1"><div class="c"><svg><use href="#i-book"/></svg></div><b>09.00</b><span>Belajar dan stimulasi</span></div>
+    <div class="nd" style="left:380px;--i:2"><div class="c"><svg><use href="#i-fork"/></svg></div><b>12.00</b><span>Makan siang bergizi</span></div>
+    <div class="nd" style="left:570px;--i:3"><div class="c"><svg><use href="#i-mosque"/></svg></div><b>14.30</b><span>Mengaji dan akhlak</span></div>
+    <div class="nd" style="left:760px;--i:4"><div class="c"><svg><use href="#i-play"/></svg></div><b>16.00</b><span>Bermain dan camilan</span></div>
+    <div class="nd hm" style="left:950px;--i:5"><div class="c"><svg><use href="#i-home"/></svg></div><b>17.30</b><span>Ibu menjemput</span></div>
+  </div>
+</section>
+
+<!-- ================= SLIDE — VISUAL BANGUNAN (PRODUCT) ================= -->
+<section class="slide" id="sb">
+  <div class="bg">
+    <div class="sky"></div>
+    <div class="sunb"></div>
+    <div class="hills" data-hills="#D8E09A|#B3C95A|#8DAA32" data-h="260"></div>
+  </div>
+  <div class="chip o a" style="--d:100">Product &amp; solution</div>
+  <div class="bcard ext"><div class="fr a l" style="--d:400"><img src="assets/bangunan-luar.jpg" alt="Tampak luar Day Care Rumah Yatim"><i class="shine"></i></div></div>
+  <div class="bcard plan"><div class="fr a r" style="--d:1100"><img src="assets/denah-bangunan.jpg" alt="Denah potongan Day Care Rumah Yatim"><i class="shine"></i></div></div>
+</section>
+
+<!-- ================= SLIDE 8 — BUSINESS MODEL ================= -->
+<section class="slide" id="s8">
+  <div class="bg"><div class="band"></div></div>
+  <h2 class="a" style="--d:200">Model Pendanaan<br>Berkelanjutan</h2>
+  <div class="chip a" style="--d:100">Business Model</div>
+
+  <div class="fc c1 a p" style="--d:700"><div class="ib"><svg><use href="#i-heart"/></svg></div><div><h3>Donasi Bulanan</h3><p>Penjaga Day Care Rumah Yatim<br>(Infaq dan sedekah)</p></div></div>
+  <div class="fc c2 a p" style="--d:1000"><div class="ib"><svg><use href="#i-moon"/></svg></div><div><h3>Zakat</h3><p>Untuk keluarga mustahik, sesuai ketentuan penyaluran</p></div></div>
+  <div class="fc c3 a p" style="--d:1300"><div class="ib"><svg><use href="#i-sprout"/></svg></div><div><h3>Wakaf Produktif</h3><p>Akuisisi dan penguatan</p></div></div>
+  <div class="fc c4 a p" style="--d:1600"><div class="ib"><svg><use href="#i-people"/></svg></div><div><h3>CSR dan Mitra</h3><p>Sponsor menu, kelas, dan relawan</p></div></div>
+
+  <svg class="flow a f" style="--d:1900;left:1186px;top:372px;width:70px;height:606px" viewBox="0 0 70 606"><path d="M0 145H70"/><path d="M0 461H70"/></svg>
+
+  <div class="eco a p" style="--d:2000">
+    <div class="ib"><svg><use href="#i-play"/></svg></div>
+    <small>Ekonomi per anak</small>
+    <b class="big count" data-prefix="Rp" data-to="35000" data-delay="2200">Rp35.000</b>
+    <span class="pd">Per anak per hari</span>
+    <p>50 anak sebulan: sekitar Rp38,5 juta<br>= sekitar 385 donor bulanan @Rp100.000</p>
+  </div>
+</section>
+
+<!-- ================= SLIDE 9 — COMPETITIVE ADVANTAGES ================= -->
+<section class="slide" id="s9">
+  <div class="bg"></div>
+  <h2 class="a" style="--d:200">Mengapa model ini berbeda</h2>
+  <div class="chip a" style="--d:100">Competitive Advantages</div>
+  <div class="tb">
+    <div></div>
+    <div class="hd me rw" style="--r:0;--k:0">Day Care Rumah Yatim</div><div class="hd rw" style="--r:0;--k:1">Panti Asuhan</div><div class="hd rw" style="--r:0;--k:2">Daycare Komersial</div><div class="hd rw" style="--r:0;--k:3">Bantuan Tunai</div>
+
+    <div class="lb rw" style="--r:1;--k:0">Anak tetap bersama ibu</div>
+    <div class="ya me2 rw" style="--r:1;--k:1">Ya</div><div class="ty rw" style="--r:1;--k:2">Tidak</div><div class="ya rw" style="--r:1;--k:3">Ya</div><div class="ya rw" style="--r:1;--k:4">Ya</div>
+
+    <div class="lb rw" style="--r:2;--k:0">terjangkau bagi dhuafa</div>
+    <div class="ya me2 rw" style="--r:2;--k:1">Ya</div><div class="ya rw" style="--r:2;--k:2">Ya</div><div class="ty rw" style="--r:2;--k:3">Tidak</div><div class="ya rw" style="--r:2;--k:4">Ya</div>
+
+    <div class="lb rw" style="--r:3;--k:0">Gizi harian terjamin</div>
+    <div class="ya me2 rw" style="--r:3;--k:1">Ya</div><div class="am rw" style="--r:3;--k:2">Beragam</div><div class="am rw" style="--r:3;--k:3">Berbayar</div><div class="am rw" style="--r:3;--k:4">Terbatas</div>
+
+    <div class="lb rw" style="--r:4;--k:0">Pembinaan akhlak &amp; Quran</div>
+    <div class="ya me2 rw" style="--r:4;--k:1">Ya</div><div class="am rw" style="--r:4;--k:2">Beragam</div><div class="am rw" style="--r:4;--k:3">Jarang</div><div class="ty rw" style="--r:4;--k:4">Tidak</div>
+
+    <div class="lb rw" style="--r:5;--k:0">Mendukung penghasilan ibu pengasuhan Day CARE</div>
+    <div class="ya me2 rw" style="--r:5;--k:1">Ya</div><div class="ty rw" style="--r:5;--k:2">Tidak</div><div class="am rw" style="--r:5;--k:3">Jika mampu</div><div class="am rw" style="--r:5;--k:4">Sebagian</div>
+  </div>
+</section>
+
+<!-- ================= SLIDE 10 — AJAKAN ================= -->
+<section class="slide" id="s10">
+  <div class="bg">
+    <div class="halo"></div>
+    <div class="sun"></div>
+    <div class="ground"></div>
+    <svg class="crowd sil" viewBox="0 0 1920 250" data-crowd="1"></svg>
+    <svg class="pair sil" viewBox="0 0 440 412">
+      <g class="a" style="--d:900"><use href="#ibu" x="60" y="20" width="147" height="380"/><path d="M152 100C170 200 230 250 268 278" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/><use href="#anak" x="250" y="210" width="73" height="190"/></g>
+    </svg>
+  </div>
+  <h2 class="a" style="--d:300">Jadilah tangan kedua bagi seorang ibu</h2>
+  <div class="nm a p" style="--d:1000"><span class="count" data-prefix="Rp" data-suffix=" Juta" data-to="750" data-dur="2200" data-delay="1100">Rp750 Juta</span></div>
+  <p class="nt a" style="--d:1500">Untuk 12 bulan pilot: 50 anak yatim dari sekitar 40 ibu tunggal</p>
+</section>
+
+<!-- ================= SLIDE 11 — PENUTUP ================= -->
+<section class="slide" id="s11">
+  <div class="bg">
+    <div class="stars" data-stars="30" style="position:absolute;inset:0;bottom:50%"></div>
+    <div class="halo"></div>
+    <div class="wall"></div>
+    <div class="win"></div>
+    <div class="ground"></div>
+    <svg class="mom" viewBox="0 0 132 340"><use href="#ibu"/></svg>
+    <svg class="run" style="left:130px;--i:0" viewBox="0 0 50 130"><use href="#anak"/></svg>
+    <svg class="run" style="left:225px;--i:1" viewBox="0 0 50 130"><use href="#anak"/></svg>
+    <svg class="run" style="left:570px;--i:2" viewBox="0 0 50 130"><use href="#anak"/></svg>
+    <svg class="run" style="left:665px;--i:3" viewBox="0 0 50 130"><use href="#anak"/></svg>
+  </div>
+  <div class="txt">
+    <p class="l1 a" style="--d:600">Di rumah, ada anak yang menunggu. Di luar sana, ada ibu yang berjuang sendirian.</p>
+    <p class="l2 a" style="--d:1600">Hari ini, jadilah jawabannya.</p>
+    <p class="l3 a" style="--d:2600">Satu ibu bisa bekerja dengan tenang. Satu anak aman sampai ibu pulang.</p>
+    <div class="ctaw a p" style="--d:3400"><div class="cta"><svg><use href="#i-heartf"/></svg>Jadilah 1 dari 385 donor bulanan</div></div>
+    <p class="l4 a" style="--d:3900">@Rp100.000 per bulan</p>
+  </div>
+  <div class="ft a f" style="--d:4300">Sampai Ibu Pulang · by Rumah Yatim</div>
+</section>
+
+</div><!-- /#slides -->
+
+<canvas id="fx" width="1920" height="1080"></canvas>
+<div id="sweep"></div>
+
+<!-- ====== INTRO VIDEO ====== -->
+<div id="intro">
+  <video id="vid" src="assets/intro.mp4" poster="assets/poster.jpg" playsinline preload="auto"></video>
+  <div id="wait">
+    <h2>Sampai Ibu Pulang</h2>
+    <button id="start"><span class="tri"></span>Mulai Presentasi</button>
+    <small>Klik atau tekan Spasi untuk memulai</small>
+  </div>
+  <button id="skip">Lewati ›</button>
+</div>
+
+<!-- ====== HUD ====== -->
+<div id="hud">
+  <div id="pills"></div>
+  <div id="hint">← → atau klik untuk lanjut · F layar penuh · M suara</div>
+  <div class="hud-btns">
+    <button id="btn-snd" title="Suara efek (M)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></button>
+    <button id="btn-fs" title="Layar penuh (F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg></button>
+  </div>
+</div>
+
+</div><!-- /#stage -->
+<script src="js/app.js"></script>
+</body>
+</html>

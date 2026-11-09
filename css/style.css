@@ -1,0 +1,421 @@
+/* ============================================================
+   SAMPAI IBU PULANG — Pitch Deck Motion
+   Panggung tetap 1920x1080, otomatis diskalakan ke layar.
+   ============================================================ */
+@font-face{font-family:'Poppins';font-weight:400;font-display:swap;src:url(../assets/fonts/poppins-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:500;font-display:swap;src:url(../assets/fonts/poppins-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:600;font-display:swap;src:url(../assets/fonts/poppins-latin-600-normal.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:700;font-display:swap;src:url(../assets/fonts/poppins-latin-700-normal.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:800;font-display:swap;src:url(../assets/fonts/poppins-latin-800-normal.woff2) format('woff2')}
+@font-face{font-family:'Fraunces';font-style:normal;font-weight:100 900;font-display:swap;src:url(../assets/fonts/fraunces-latin-wght-normal.woff2) format('woff2')}
+@font-face{font-family:'Fraunces';font-style:italic;font-weight:100 900;font-display:swap;src:url(../assets/fonts/fraunces-latin-wght-italic.woff2) format('woff2')}
+
+:root{
+  --red:#A8141A; --red-d:#740E14; --red-dd:#3F0609;
+  --olive:#5E7B0F; --olive-d:#3E5809; --sage:#B3C7AB;
+  --yellow:#FFD95A; --amber:#F2A63B; --cream:#FFF6E3; --peach:#F7C998;
+  --ink:#2B1814; --brown:#6B3F2A;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#0b0506;overflow:hidden;font-family:'Poppins',system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;user-select:none}
+button{font-family:inherit;cursor:pointer}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center center;overflow:hidden;background:#000}
+#stage.idle{cursor:none}
+.abs,.slide>*{position:absolute}
+svg{display:block;overflow:visible}
+
+/* ---------- slide engine ---------- */
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;overflow:hidden}
+.slide.active{opacity:1;visibility:visible}
+.slide>.bg{inset:0;z-index:0}
+.slide>.bg *{position:absolute}
+.a{opacity:0}
+.slide.active .a{animation:rise 1s var(--ease) both;animation-delay:calc(var(--d,0)*1ms)}
+.slide.active .a.l{animation-name:fromL}
+.slide.active .a.r{animation-name:fromR}
+.slide.active .a.p{animation-name:pop;animation-duration:.9s}
+.slide.active .a.f{animation-name:fade;animation-duration:1.4s}
+.slide.active .a.u{animation-name:grow;animation-duration:1.4s}
+@keyframes rise{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:none}}
+@keyframes fromL{from{opacity:0;transform:translateX(-110px)}to{opacity:1;transform:none}}
+@keyframes fromR{from{opacity:0;transform:translateX(110px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.6)}60%{opacity:1;transform:scale(1.07)}100%{opacity:1;transform:scale(1)}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes grow{from{opacity:0;transform:scaleY(.01)}to{opacity:1;transform:scaleY(1)}}
+.slide .bg{transform:scale(1.06)}
+.slide.active .bg{animation:bgzoom 9s ease-out both}
+@keyframes bgzoom{from{transform:scale(1.06)}to{transform:scale(1)}}
+
+@keyframes breathe{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.08);opacity:.82}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes twinkle{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes dash{to{stroke-dashoffset:-60}}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(12px)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes glowpulse{0%,100%{box-shadow:0 0 0 0 rgba(255,217,90,.55)}50%{box-shadow:0 0 0 26px rgba(255,217,90,0)}}
+@keyframes drift{from{transform:translateX(-200px)}to{transform:translateX(2200px)}}
+
+/* ---------- komponen umum ---------- */
+.chip{display:inline-flex;align-items:center;gap:14px;background:#fff;color:var(--ink);font-size:28px;font-weight:500;padding:10px 38px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.chip.o{background:var(--olive);color:#fff}
+.ic{width:1em;height:1em}
+.ill{overflow:visible}
+.stars{position:absolute;inset:0}
+.stars i{position:absolute;width:5px;height:5px;border-radius:50%;background:#fff6d8;animation:twinkle 3s ease-in-out infinite}
+.hills{left:0;bottom:0;width:1920px}
+.hills svg{width:100%;height:100%}
+.sil{color:#3A211B}
+
+/* ---------- SFX sweep (transisi) ---------- */
+#sweep{position:absolute;left:0;top:0;width:3840px;height:1080px;z-index:30;pointer-events:none;transform:translateX(-3840px);
+  background:linear-gradient(100deg,rgba(255,226,160,0) 0%,rgba(255,226,160,.55) 12%,rgba(255,214,130,.98) 20%,rgba(255,236,190,1) 50%,rgba(255,214,130,.98) 80%,rgba(255,226,160,.55) 88%,rgba(255,226,160,0) 100%)}
+#sweep.go{animation:sweep 1s cubic-bezier(.65,0,.35,1) both}
+@keyframes sweep{from{transform:translateX(-3840px)}to{transform:translateX(1920px)}}
+#fx{position:absolute;inset:0;z-index:20;pointer-events:none;mix-blend-mode:normal}
+
+/* ---------- INTRO ---------- */
+#intro{position:absolute;inset:0;background:#0d0607;z-index:40}
+#intro.gone{display:none}
+#intro video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+#wait{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;background:radial-gradient(ellipse at 50% 42%,rgba(18,8,8,.35) 0%,rgba(8,4,5,.82) 100%);transition:opacity .9s}
+#intro.playing #wait{opacity:0;pointer-events:none}
+#wait h2{font-family:'Fraunces',serif;font-style:italic;font-weight:600;font-size:76px;color:var(--cream);letter-spacing:-1px;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+#start{position:relative;display:flex;align-items:center;gap:22px;background:var(--yellow);color:var(--ink);border:0;border-radius:999px;padding:26px 62px 26px 48px;font-size:36px;font-weight:700;animation:glowpulse 2.4s infinite}
+#start .tri{width:0;height:0;border-left:30px solid var(--ink);border-top:19px solid transparent;border-bottom:19px solid transparent}
+#wait small{font-size:26px;color:rgba(255,246,227,.78);font-weight:400}
+#skip{position:absolute;right:56px;bottom:56px;background:rgba(20,10,8,.55);color:#fff;border:2px solid rgba(255,255,255,.55);border-radius:999px;font-size:28px;font-weight:600;padding:12px 34px;opacity:0;pointer-events:none;transition:opacity .6s;backdrop-filter:blur(6px)}
+#intro.playing #skip{opacity:1;pointer-events:auto;transition-delay:2.5s}
+
+/* ---------- HUD ---------- */
+#hud{position:absolute;left:0;right:0;bottom:0;height:150px;z-index:50;pointer-events:none;opacity:0;transition:opacity .45s}
+#hud.show{opacity:1}
+#pills{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);display:flex;gap:10px;padding:14px 20px;background:rgba(24,10,8,.55);backdrop-filter:blur(8px);border-radius:999px;pointer-events:auto}
+.pill{width:22px;height:12px;border-radius:99px;border:0;background:rgba(255,255,255,.45);transition:all .45s var(--ease)}
+.pill.on{width:66px;background:var(--yellow)}
+.hud-btns{position:absolute;right:34px;bottom:28px;display:flex;gap:12px;pointer-events:auto}
+.hud-btns button{width:58px;height:58px;border-radius:50%;border:0;background:rgba(24,10,8,.55);color:#fff;backdrop-filter:blur(8px);display:grid;place-items:center}
+.hud-btns svg{width:28px;height:28px}
+.hud-btns .off{opacity:.45}
+#hint{position:absolute;left:40px;bottom:42px;font-size:24px;color:#fff;background:rgba(24,10,8,.55);backdrop-filter:blur(8px);padding:12px 26px;border-radius:999px;opacity:0;transition:opacity .6s}
+#hint.on{opacity:1}
+
+/* ============================================================
+   SLIDE 1 — JUDUL
+   ============================================================ */
+#s1 .sky{inset:0;background:linear-gradient(180deg,#FFF6E0 0%,#FFE4B0 42%,#F8C27E 74%,#E99A4B 100%)}
+#s1 .sunglow{left:880px;top:20px;width:1100px;height:1100px;border-radius:50%;background:radial-gradient(circle,rgba(255,246,205,.98) 0%,rgba(255,228,150,.6) 36%,rgba(255,200,120,0) 70%);animation:breathe 6s ease-in-out infinite}
+#s1 .sundisc{left:1380px;top:250px;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle at 40% 38%,#FFF7D8,#FFD86E 70%);}
+#s1 .hills{height:480px}
+#s1 .bird{width:60px;height:24px;top:230px;left:0;animation:drift 22s linear infinite}
+#s1 .bird:nth-child(2){top:330px;animation-duration:30s;animation-delay:-8s}
+#s1 .bird:nth-child(3){top:180px;animation-duration:26s;animation-delay:-15s;scale:.7}
+#s1 .pills{left:134px;top:120px;display:flex;gap:16px}
+#s1 .pills i{display:block;height:58px;border-radius:99px;background:var(--olive)}
+#s1 .pills i:nth-child(1){width:58px}
+#s1 .pills i:nth-child(2){width:120px;opacity:.85}
+#s1 .pills i:nth-child(3){width:300px;opacity:.7}
+#s1.active .pills i{animation:pillgrow 1.2s var(--ease) both}
+#s1.active .pills i:nth-child(2){animation-delay:.5s}
+#s1.active .pills i:nth-child(3){animation-delay:.8s}
+@keyframes pillgrow{from{transform:scaleX(.1);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}
+#s1 h1{left:130px;top:240px;font-size:168px;line-height:.96;font-weight:800;letter-spacing:-4px;color:var(--ink)}
+#s1 h1 span{display:inline-block}
+#s1 h1 .ib{color:var(--red)}
+#s1 .sub{left:136px;top:620px;width:880px;font-size:42px;line-height:1.38;font-weight:500;color:#5A2F22}
+#s1 .by{left:136px;top:840px;background:var(--olive);color:#fff;font-size:32px;font-weight:600;padding:16px 50px;border-radius:999px;box-shadow:0 10px 26px rgba(62,88,9,.35)}
+#s1 .fam{left:1100px;top:610px;width:740px;height:390px}
+
+/* ============================================================
+   SLIDE 2 — MASALAH (MALAM)
+   ============================================================ */
+#s2 .bg{background:radial-gradient(ellipse at 30% 25%,#C62C2C 0%,#8E141A 46%,#4A0709 100%)}
+#s2 .bg .glow{left:-200px;top:300px;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(255,190,110,.28),transparent 65%);animation:breathe 7s ease-in-out infinite}
+#s2 .frame{left:110px;top:100px;width:520px;height:880px;border:8px solid #fff;border-radius:44px;overflow:hidden;background:linear-gradient(180deg,#15122E 0%,#3A1634 55%,#7A2A34 100%);box-shadow:0 30px 70px rgba(0,0,0,.45)}
+#s2 .frame *{position:absolute}
+#s2 .moon{left:60px;top:70px;width:84px;height:84px;border-radius:50%;box-shadow:inset -22px 0 0 0 #FFEFB8;filter:drop-shadow(0 0 22px rgba(255,239,184,.7))}
+#s2 .ground{left:0;bottom:0;width:100%;height:210px;background:linear-gradient(180deg,#2A1218,#160A0D)}
+#s2 .wall{left:250px;top:420px;width:300px;height:480px;background:#241016;border-radius:6px 6px 0 0}
+#s2 .roof{left:215px;top:352px;width:340px;height:70px;background:#120609;clip-path:polygon(0 100%,18% 0,82% 0,100% 100%)}
+#s2 .win{left:290px;top:480px;width:150px;height:170px;background:linear-gradient(180deg,#FFE9A6,#F7B655);border:7px solid #4A2A20;box-shadow:0 0 90px 26px rgba(255,205,110,.6);animation:breathe 4s ease-in-out infinite}
+#s2 .win:before,#s2 .win:after{content:"";position:absolute;background:#4A2A20}
+#s2 .win:before{left:50%;top:0;bottom:0;width:6px;margin-left:-3px}
+#s2 .win:after{top:50%;left:0;right:0;height:6px;margin-top:-3px}
+#s2 .kid{left:332px;top:552px;width:34px;height:90px;color:#2A1218}
+#s2 .cone{left:230px;top:650px;width:300px;height:260px;background:linear-gradient(180deg,rgba(255,210,120,.35),transparent);clip-path:polygon(24% 0,76% 0,100% 100%,0 100%)}
+#s2 .mom{left:60px;top:520px;width:130px;height:340px;color:#0B0405;animation:walk 9s ease-in-out infinite alternate}
+@keyframes walk{from{transform:translateX(56px)}to{transform:translateX(-18px)}}
+#s2 .head{left:720px;top:96px;width:1090px;height:214px;border:4px solid #fff;border-radius:24px;padding:34px 46px}
+#s2 .head h2{font-size:64px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1.05}
+#s2 .head p{font-size:29px;line-height:1.4;color:#fff;margin-top:16px;font-weight:400}
+#s2 .ask{left:720px;top:352px;font-size:48px;font-weight:700;color:#fff}
+#s2 .cards{left:720px;top:440px;width:1090px}
+#s2 .pc{display:flex;align-items:center;gap:30px;background:#fff;border-radius:28px;padding:22px 40px 22px 22px;margin-bottom:22px;box-shadow:0 14px 30px rgba(0,0,0,.28)}
+#s2 .pc b.n{flex:none;display:grid;place-items:center;width:96px;height:96px;border-radius:50%;background:var(--red);color:#fff;font-size:46px;font-weight:800;box-shadow:0 0 0 7px #FFD95A}
+#s2 .pc p{font-size:31px;line-height:1.42;font-weight:400;color:var(--ink)}
+#s2 .pc p b{font-weight:800}
+
+/* ============================================================
+   SLIDE 3 — 3 MASALAH DALAM 1 RUMAH
+   ============================================================ */
+#s3 .bg{background:linear-gradient(180deg,#1B1230 0%,#4A1424 50%,#7E1A1E 100%)}
+#s3 .chip{left:80px;top:46px}
+#s3 .roof{left:150px;top:70px}
+#s3 .ttl{left:150px;top:138px;width:1620px;text-align:center;font-size:82px;font-weight:800;color:var(--cream);letter-spacing:-1px}
+#s3 .body{left:210px;top:370px;width:1500px;height:640px;background:linear-gradient(180deg,#2E141B,#210E13)}
+#s3 .ground{left:0;top:1000px;width:1920px;height:80px;background:#150A0D}
+#s3 .w{top:420px;width:420px;height:520px;border:12px solid #5A2F22;border-radius:22px 22px 10px 10px;background:linear-gradient(180deg,#FFE5A0 0%,#F8BB5A 72%,#EE9440 100%);overflow:hidden;box-shadow:0 0 90px 22px rgba(255,190,90,.38)}
+#s3 .w1{left:270px}#s3 .w2{left:750px}#s3 .w3{left:1230px}
+#s3 .w svg{position:absolute;left:0;top:38px;width:396px;height:297px}
+#s3 .w p{position:absolute;left:0;right:0;bottom:0;padding:0 26px 30px;text-align:center;font-size:34px;line-height:1.28;font-weight:700;color:var(--ink)}
+#s3.active .w{animation:rise 1s var(--ease) both,lit 2.4s ease-in-out both;animation-delay:calc(var(--d)*1ms),calc(var(--d)*1ms)}
+@keyframes lit{from{filter:brightness(.45) saturate(.7)}to{filter:none}}
+#s3 .sway{transform-origin:200px 235px;animation:sway 3s ease-in-out infinite}
+#s3 .dsh{stroke-dasharray:14 10;animation:dash 1.2s linear infinite}
+#s3 .coin{animation:coinin .6s var(--ease) both;animation-delay:calc(1.8s + var(--c)*.28s)}
+@keyframes coinin{from{opacity:0;transform:translateY(-60px)}to{opacity:1;transform:none}}
+#s3 .hand{transform-origin:290px 150px;animation:spin 8s linear infinite}
+#s3 .hand.s{animation-duration:96s}
+#s3 .arrow{animation:floaty 1.8s ease-in-out infinite}
+
+/* ============================================================
+   SLIDE 4 — SOLUSI (FAJAR)
+   ============================================================ */
+#s4 .bg{background:radial-gradient(circle at 88% 108%,rgba(255,228,150,.95) 0,rgba(255,200,90,.4) 28%,transparent 58%),linear-gradient(135deg,#34500A 0%,#5E7B0F 52%,#92AA2C 100%)}
+#s4 .rays{left:1500px;top:900px;width:0;height:0}
+#s4 .rays i{position:absolute;left:-45px;top:-1300px;width:90px;height:1300px;transform-origin:45px 1300px;clip-path:polygon(0 0,100% 0,56% 100%,44% 100%);background:linear-gradient(180deg,rgba(255,236,170,0),rgba(255,236,170,.26))}
+#s4 .rays.r{animation:spin 90s linear infinite}
+#s4 .hills{height:300px}
+#s4 .grid{left:120px;top:150px;width:900px;display:grid;grid-template-columns:1fr 1fr;gap:36px}
+#s4 .sc{height:408px;background:#fff;border-radius:38px;padding:34px 34px;box-shadow:0 22px 44px rgba(0,0,0,.28);position:relative}
+#s4 .sc .ib{width:104px;height:104px;border-radius:50%;background:#EAF1D2;display:grid;place-items:center;color:var(--olive-d)}
+#s4 .sc .ib svg{width:62px;height:62px}
+#s4 .sc h3{font-size:44px;font-weight:800;line-height:1.1;margin-top:26px;color:var(--ink)}
+#s4 .sc p{font-size:28px;line-height:1.4;margin-top:14px;color:#5A5148}
+#s4 .txt{left:1090px;top:156px;width:770px}
+#s4 .txt .row{display:flex;align-items:center;gap:18px}
+#s4 .txt .sp{width:64px;height:64px;border-radius:50%;background:#fff;color:var(--olive-d);display:grid;place-items:center}
+#s4 .txt .sp svg{width:40px;height:40px}
+#s4 h2{font-size:108px;line-height:1.02;font-weight:800;color:#fff;margin-top:26px;letter-spacing:-2px;text-shadow:0 6px 30px rgba(0,0,0,.22)}
+#s4 .yl{font-size:40px;font-weight:700;color:var(--yellow);margin-top:30px}
+#s4 .ds{font-size:34px;line-height:1.42;font-weight:500;color:#fff;margin-top:8px}
+#s4 .fam{left:1150px;top:772px;width:700px;height:290px}
+
+/* ============================================================
+   SLIDE 5 — MARKET VALIDASI (PAGI)
+   ============================================================ */
+#s5 .bg{background:linear-gradient(180deg,#FFF8E8 0%,#FFEBC4 66%,#FBD9A0 100%)}
+#s5 .hills{height:260px}
+#s5 .chip{left:80px;top:40px}
+#s5 .bar{left:110px;top:130px;width:1700px;height:132px;background:rgba(255,255,255,.82);border-radius:30px;display:flex;align-items:center;padding-left:56px;font-size:68px;font-weight:700;letter-spacing:-1px;color:var(--ink);box-shadow:0 10px 30px rgba(120,70,20,.15)}
+#s5 .st{top:316px;width:520px;height:620px;background:#fff;border-radius:34px;padding:38px 42px;box-shadow:0 26px 50px rgba(110,60,20,.22);border-top:12px solid var(--red)}
+#s5 .st.g{border-top-color:var(--olive)}
+#s5 .st1{left:110px}#s5 .st2{left:700px}#s5 .st3{left:1290px}
+#s5 .st small{display:block;font-size:30px;font-weight:600;color:#6a5d52}
+#s5 .st .num{display:block;font-size:126px;font-weight:800;line-height:1.05;letter-spacing:-4px;color:var(--red);margin-top:6px}
+#s5 .st.g .num{color:var(--olive)}
+#s5 .st p{font-size:27px;line-height:1.45;color:#4a4039;margin-top:14px}
+#s5 .pic{height:52px;margin-top:10px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+#s5 .pic svg{width:36px;height:36px}
+#s5 .pic .h{color:#D9CBB5;transition:color .5s}
+#s5 .pic .h.hot{color:var(--red);animation:pulse 1.6s ease-in-out infinite}
+#s5 .dots{height:auto;width:440px;gap:5px}
+#s5 .dots i{width:12px;height:12px;border-radius:50%;background:var(--olive);opacity:0}
+#s5.active .dots i{animation:fade .5s both;animation-delay:calc(1.2s + var(--i)*28ms)}
+#s5 .bars{display:block;width:440px;height:auto}
+#s5 .bars div{height:20px;border-radius:10px;margin:7px 0;transform-origin:left}
+#s5 .bars .b1{background:var(--red);width:100%}
+#s5 .bars .b2{background:var(--olive);width:40%}
+#s5.active .bars div{animation:barx 1.6s var(--ease) both;animation-delay:1.5s}
+@keyframes barx{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* ============================================================
+   SLIDE 6 — MARKET SIZE
+   ============================================================ */
+#s6 .bg{background:linear-gradient(180deg,#FFF8E8,#FFE6B8)}
+#s6 .hills{height:260px}
+#s6 .chip{left:80px;top:40px}
+#s6 .panel{left:110px;top:100px;width:1700px;height:880px;background:rgba(255,255,255,.93);border-radius:46px;box-shadow:0 30px 70px rgba(110,60,20,.25)}
+#s6 h2{left:172px;top:132px;font-size:78px;line-height:1.06;font-weight:800;letter-spacing:-1px;color:var(--ink)}
+#s6 h2 em{font-style:normal;color:var(--red)}
+#s6 .chart{left:172px;top:392px;width:640px;height:540px}
+#s6 .chart *{position:absolute}
+#s6 .cap{left:0;right:0;top:-56px;text-align:center;font-size:28px;color:#555}
+#s6 .gl{left:0;right:0;height:2px;background:#EEE6D8}
+#s6 .base{left:0;right:0;top:470px;height:3px;background:#CFC3AF}
+#s6 .b{bottom:70px;width:250px;border-radius:26px 26px 0 0;transform-origin:bottom}
+#s6 .b1{left:50px;height:420px;background:var(--red)}
+#s6 .b2{left:350px;height:52px;background:var(--yellow)}
+#s6 .ghost{left:350px;bottom:122px;width:250px;height:368px;border:4px dashed #E0A52A;border-bottom:0;border-radius:26px 26px 0 0;background:linear-gradient(180deg,rgba(255,217,90,.35),rgba(255,217,90,0));animation:breathe 3.2s ease-in-out infinite}
+#s6 .v{font-size:28px;font-weight:600;color:var(--ink);text-align:center;width:250px}
+#s6 .xl{left:0;right:0;bottom:6px;text-align:center;font-size:26px;color:#555}
+#s6.active .b{animation:grow 1.6s var(--ease) both;animation-delay:1s}
+#s6 .stat{left:900px;height:172px;background:var(--olive);border-radius:30px;padding:20px 40px;color:#fff;display:flex;flex-direction:column;justify-content:center;box-shadow:0 16px 34px rgba(62,88,9,.35)}
+#s6 .stat b{font-size:80px;line-height:1;font-weight:800;letter-spacing:-1px}
+#s6 .stat span{font-size:30px;line-height:1.3;margin-top:6px}
+#s6 .s1{top:392px;width:850px}#s6 .s2{top:592px;width:810px}#s6 .s3{top:792px;width:620px}
+#s6 .spk{left:150px;top:150px;width:10px;height:10px}
+
+/* ============================================================
+   SLIDE 7 — KOLABORASI & HARI
+   ============================================================ */
+#s7 .bg{background:linear-gradient(180deg,#BFE3F2 0%,#FFF0CC 52%,#FFD39A 100%)}
+#s7 .hills{height:260px}
+#s7 .sun{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 38%,#FFF7D8,#FFD25A 72%);box-shadow:0 0 70px 26px rgba(255,205,90,.6);left:140px;top:50px}
+#s7.active .sun{animation:sunarc 8s ease-in-out both .6s}
+@keyframes sunarc{0%{left:140px;top:70px}50%{left:900px;top:12px}100%{left:1660px;top:110px;background:radial-gradient(circle at 40% 38%,#FFE2B0,#F2893A 72%)}}
+#s7 .chip{left:80px;top:40px;z-index:3}
+#s7 .panel{left:110px;top:190px;width:1700px;height:800px;background:rgba(255,255,255,.95);border-radius:46px;box-shadow:0 30px 70px rgba(110,60,20,.28)}
+#s7 h2{left:172px;top:222px;font-size:88px;font-weight:800;letter-spacing:-2px;color:var(--ink)}
+#s7 .stp{top:384px;width:450px;height:300px;border-radius:38px;padding:26px 28px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+#s7 .stp.g{background:var(--sage)}
+#s7 .stp.d{background:var(--olive);color:#fff;box-shadow:0 14px 30px rgba(62,88,9,.35)}
+#s7 .stp h3{font-size:38px;font-weight:700;line-height:1.2}
+#s7 .stp p{font-size:30px;line-height:1.35;margin-top:10px;font-weight:400}
+#s7 .st1{left:172px}#s7 .st2{left:742px}#s7 .st3{left:1312px}
+#s7 .arr{top:488px;width:92px;height:96px;z-index:2}
+#s7 .arr svg{width:100%;height:100%;animation:nudge 1.5s ease-in-out infinite}
+#s7 .ar1{left:626px}#s7 .ar2{left:1196px}
+#s7 .day{left:172px;top:736px;width:430px;font-size:54px;font-weight:800;line-height:1.1;color:var(--ink)}
+#s7 .tl{left:650px;top:738px;width:1130px;height:230px}
+#s7 .tl .ln{position:absolute;left:92px;right:92px;top:46px;height:0;border-top:4px dashed #9DB48E}
+#s7 .tl .ln i{position:absolute;left:0;top:-4px;height:4px;width:100%;background:var(--olive);transform-origin:left;transform:scaleX(0)}
+#s7.active .tl .ln i{animation:barx 4.2s linear both 1.4s}
+#s7 .nd{position:absolute;top:0;width:190px;text-align:center}
+#s7 .nd .c{margin:0 auto;width:92px;height:92px;border-radius:50%;background:var(--olive-d);display:grid;place-items:center;color:#fff;box-shadow:0 8px 18px rgba(30,60,20,.3)}
+#s7 .nd .c svg{width:50px;height:50px}
+#s7 .nd.hm .c{background:#B97F1E}
+#s7 .nd b{display:block;margin-top:16px;font-family:'Fraunces',serif;font-size:34px;font-weight:700;color:var(--olive-d)}
+#s7 .nd span{display:block;font-size:24px;line-height:1.28;margin-top:4px;color:#444;font-weight:500}
+#s7.active .nd{animation:pop .8s var(--ease) both;animation-delay:calc(1.3s + var(--i)*.7s)}
+
+/* ============================================================
+   SLIDE 8 — BUSINESS MODEL
+   ============================================================ */
+#s8 .bg{background:linear-gradient(180deg,#5E7B0F 0,#5E7B0F 320px,#FFF6E3 320px)}
+#s8 .band{left:0;top:0;width:1920px;height:330px;background:var(--olive);border-radius:0 0 110px 0}
+#s8 .band:after{content:"";position:absolute;right:120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,236,150,.4),transparent 70%)}
+#s8 .chip{left:1488px;top:60px;z-index:3}
+#s8 h2{left:100px;top:52px;font-size:88px;line-height:1.04;font-weight:700;color:#fff;letter-spacing:-1.5px}
+#s8 .fc{width:530px;height:290px;background:var(--sage);border-radius:34px;display:flex;align-items:center;gap:28px;padding:0 34px;box-shadow:0 16px 30px rgba(62,88,9,.22)}
+#s8 .fc .ib{flex:none;width:96px;height:96px;border-radius:50%;background:rgba(255,255,255,.65);display:grid;place-items:center;color:var(--olive-d)}
+#s8 .fc .ib svg{width:58px;height:58px}
+#s8 .fc h3{font-size:40px;font-weight:800;line-height:1.1;color:var(--ink)}
+#s8 .fc p{font-size:27px;line-height:1.35;margin-top:8px;color:#2f3a24}
+#s8 .c1{left:100px;top:372px}#s8 .c2{left:658px;top:372px}#s8 .c3{left:100px;top:688px}#s8 .c4{left:658px;top:688px}
+#s8 .flow{left:1060px;top:360px;width:200px;height:640px}
+#s8 .flow path{fill:none;stroke:#E8901F;stroke-width:8;stroke-linecap:round;stroke-dasharray:4 18;animation:dash 1s linear infinite}
+#s8 .eco{left:1250px;top:372px;width:570px;height:606px;background:var(--olive);border-radius:40px;padding:44px 26px;text-align:center;color:#fff;box-shadow:0 24px 50px rgba(62,88,9,.4);display:flex;flex-direction:column;justify-content:center;align-items:center}
+#s8 .eco .ib{width:96px;height:96px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;color:var(--yellow);animation:pulse 2s ease-in-out infinite}
+#s8 .eco .ib svg{width:58px;height:58px}
+#s8 .eco small{display:block;font-size:28px;font-weight:700;color:var(--yellow);margin-top:20px}
+#s8 .eco .big{display:block;font-size:100px;line-height:1.05;font-weight:800;letter-spacing:-2px;margin-top:8px}
+#s8 .eco .pd{display:block;font-size:32px;font-weight:700;margin-top:6px}
+#s8 .eco p{font-size:27px;line-height:1.4;margin-top:22px;font-weight:400}
+
+/* ============================================================
+   SLIDE 9 — COMPETITIVE ADVANTAGES
+   ============================================================ */
+#s9 .bg{background:radial-gradient(ellipse at 20% 0%,#B4202A 0%,#7A0F16 50%,#43070B 100%)}
+#s9 .chip{left:auto;right:60px;top:70px}
+#s9 h2{left:110px;top:70px;font-size:88px;font-weight:800;color:#fff;letter-spacing:-2px}
+#s9 .tb{left:110px;top:240px;width:1700px;display:grid;grid-template-columns:600px repeat(4,1fr);grid-auto-rows:116px;gap:10px}
+#s9 .tb>div{display:grid;place-items:center;border-radius:20px;font-size:34px;font-weight:600;text-align:center;line-height:1.15;padding:0 10px}
+#s9 .tb .lb{justify-content:end;text-align:right;display:flex;align-items:center;font-weight:700;color:#fff;font-size:38px;padding-right:30px}
+#s9 .tb .hd{background:var(--olive-d);color:#fff;font-weight:700;font-size:30px}
+#s9 .tb .hd.me{background:var(--olive);box-shadow:0 0 0 5px var(--yellow)}
+#s9 .tb .ya{background:#6C8E14;color:#fff}
+#s9 .tb .ty{background:#E0453F;color:#fff}
+#s9 .tb .am{background:var(--yellow);color:var(--ink)}
+#s9 .tb .me2{box-shadow:0 0 0 4px rgba(255,217,90,.9)}
+#s9 .tb .ya.me2{animation:glowpulse 2.4s infinite 4s}
+#s9 .tb .rw{opacity:0}
+#s9.active .tb .rw{animation:pop .7s var(--ease) both;animation-delay:calc(900ms + var(--r)*260ms + var(--k)*70ms)}
+#s9 .mom{left:30px;top:30px}
+
+/* ============================================================
+   SLIDE 10 — AJAKAN (SENJA)
+   ============================================================ */
+#s10 .bg{background:linear-gradient(180deg,#5B0A10 0%,#9A1A1C 38%,#E26A2E 76%,#F6B24A 100%)}
+#s10 .sun{left:1230px;top:200px;width:540px;height:540px;border-radius:50%;background:radial-gradient(circle at 42% 40%,#FFF3C4 0%,#FFD25A 48%,#F59A3A 100%);animation:breathe 6s ease-in-out infinite}
+#s10 .halo{left:900px;top:-130px;width:1200px;height:1200px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,120,.75) 0%,rgba(255,180,80,.32) 38%,transparent 68%);animation:breathe 6s ease-in-out infinite}
+#s10 .pair{left:1380px;top:618px;width:440px;height:412px}
+#s10 h2{left:110px;top:100px;width:1020px;font-size:112px;line-height:1.04;font-weight:800;color:#fff;letter-spacing:-2px;text-shadow:0 6px 30px rgba(60,0,0,.35)}
+#s10 .nm{left:110px;top:520px;font-size:196px;line-height:1;font-weight:800;color:var(--yellow);letter-spacing:-5px;text-shadow:0 8px 40px rgba(90,20,0,.4)}
+#s10 .nt{left:116px;top:742px;width:980px;font-size:40px;font-weight:500;color:#fff;line-height:1.35;text-wrap:balance}
+#s10 .crowd{left:0;top:830px;width:1920px;height:250px}
+#s10 .ground{left:0;top:1030px;width:1920px;height:50px;background:#2B1210}
+#s10 .crowd g.f{opacity:0;animation:crowdin .8s var(--ease) both;animation-delay:calc(1.6s + var(--i)*30ms)}
+@keyframes crowdin{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+/* ============================================================
+   SLIDE 11 — PENUTUP
+   ============================================================ */
+#s11 .bg{background:linear-gradient(180deg,#0F0A14 0%,#2A1220 38%,#8A3A22 78%,#F0A04A 100%)}
+#s11 .halo{left:-160px;top:90px;width:1100px;height:1100px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,130,.55),rgba(255,170,80,.18) 45%,transparent 68%);animation:breathe 6s ease-in-out infinite}
+#s11 .wall{left:80px;top:140px;width:700px;height:830px;background:#1B0E12;border-radius:20px 20px 0 0}
+#s11 .win{left:150px;top:200px;width:560px;height:500px;background:linear-gradient(180deg,#FFEFB8 0%,#FFD27A 60%,#F7AE50 100%);border:14px solid #4A2A20;box-shadow:0 0 140px 50px rgba(255,200,110,.55);animation:breathe 5s ease-in-out infinite}
+#s11 .win:before,#s11 .win:after{content:"";position:absolute;background:#4A2A20}
+#s11 .win:before{left:50%;top:0;bottom:0;width:12px;margin-left:-6px}
+#s11 .win:after{top:50%;left:0;right:0;height:12px;margin-top:-6px}
+#s11 .ground{left:0;top:940px;width:1920px;height:140px;background:linear-gradient(180deg,#2A1410,#120808)}
+#s11 .mom{left:330px;top:520px;width:200px;height:520px;color:#0B0405}
+#s11 .run{top:790px;height:230px;width:90px;color:#0B0405}
+#s11.active .run{animation:runin 3.4s var(--ease) both;animation-delay:calc(1.2s + var(--i)*.35s)}
+@keyframes runin{from{transform:translateX(-380px);opacity:0}15%{opacity:1}to{transform:none;opacity:1}}
+#s11 .txt{left:900px;top:120px;width:930px}
+#s11 .l1{font-size:42px;line-height:1.42;color:var(--cream);font-weight:400}
+#s11 .l2{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:112px;line-height:1.02;color:var(--yellow);margin-top:26px;letter-spacing:-2px;text-shadow:0 8px 40px rgba(0,0,0,.4)}
+#s11 .l3{font-size:38px;line-height:1.4;color:#fff;margin-top:30px;font-weight:500}
+#s11 .ctaw{display:block;margin-top:44px;width:max-content}
+#s11 .cta{display:flex;align-items:center;gap:20px;background:var(--yellow);color:var(--ink);font-size:40px;font-weight:800;padding:24px 52px;border-radius:999px;animation:glowpulse 2.4s infinite 4.5s}
+#s11 .l4{font-size:30px;color:var(--cream);margin-top:22px;font-weight:500}
+#s11 .cta svg{width:46px;height:46px;color:var(--red)}
+#s11 .ft{left:900px;top:972px;font-size:28px;font-weight:600;color:rgba(255,246,227,.9);letter-spacing:.5px}
+
+/* ============================================================
+   SLIDE — VIDEO PROTOTYPE
+   ============================================================ */
+#sv .sky{inset:0;background:linear-gradient(180deg,#FFF3DA 0%,#FFE0B2 58%,#F8C58A 100%)}
+#sv .halo{left:390px;top:-40px;width:1140px;height:1140px;border-radius:50%;background:radial-gradient(circle,rgba(255,236,170,.95) 0%,rgba(255,214,130,.45) 40%,transparent 68%);animation:breathe 6s ease-in-out infinite}
+#sv .hills{height:300px}
+#sv .hglow{left:1330px;top:630px;width:470px;height:470px;border-radius:50%;background:radial-gradient(circle,rgba(255,220,130,.75),transparent 65%)}
+#sv .home{left:1400px;top:690px;width:330px;height:260px;--wall:#B3201F;--roof:#3B1A14;--win:#FFE9A6}
+#sv .fam{left:150px;top:700px;width:420px;height:320px}
+#sv .chip{left:80px;top:40px}
+#sv .phone{left:690px;top:58px;width:540px;height:936px;padding:18px;background:#1B1112;border-radius:72px;box-shadow:0 40px 80px rgba(60,20,10,.45),inset 0 0 0 3px #3A2A2B;z-index:3}
+#sv .screen{position:relative;width:504px;height:900px;border-radius:56px;overflow:hidden;background:#0B0506;cursor:pointer}
+#sv .screen video{width:100%;height:100%;object-fit:cover;display:block}
+#sv .notch{position:absolute;left:50%;top:26px;width:110px;height:26px;margin-left:-55px;background:#1B1112;border-radius:20px;z-index:4}
+#sv .pico{position:absolute;inset:0;display:grid;place-items:center;background:rgba(15,8,8,.35);opacity:0;transition:opacity .3s;pointer-events:none}
+#sv .phone.paused .pico,#sv .phone.ended .pico{opacity:1}
+#sv .pico i{width:0;height:0;border-left:74px solid #fff;border-top:46px solid transparent;border-bottom:46px solid transparent;margin-left:22px;filter:drop-shadow(0 6px 18px rgba(0,0,0,.5))}
+#sv .pbar{position:absolute;left:34px;right:34px;bottom:30px;height:8px;border-radius:99px;background:rgba(255,255,255,.4);overflow:hidden;pointer-events:none}
+#sv .pbar i{display:block;height:100%;width:0;background:var(--yellow);border-radius:99px}
+
+/* ============================================================
+   SLIDE — VISUAL BANGUNAN (bagian Product)
+   ============================================================ */
+#sb .sky{inset:0;background:linear-gradient(180deg,#BFE3F2 0%,#FFF0CC 52%,#FFD39A 100%)}
+#sb .sunb{left:1560px;top:40px;width:130px;height:130px;border-radius:50%;background:radial-gradient(circle at 40% 38%,#FFF7D8,#FFD25A 72%);box-shadow:0 0 80px 30px rgba(255,205,90,.55)}
+#sb .hills{height:260px}
+#sb .chip{left:80px;top:40px;z-index:5}
+#sb .bcard{position:absolute}
+#sb .ext{left:80px;top:136px;width:1060px;height:590px;transform:rotate(-1.4deg);z-index:2}
+#sb .plan{left:940px;top:404px;width:900px;height:520px;transform:rotate(1.4deg);z-index:3}
+#sb .fr{position:absolute;inset:0;border:10px solid #fff;border-radius:30px;overflow:hidden;box-shadow:0 30px 60px rgba(90,50,20,.38);background:#fff}
+#sb .fr img{width:100%;height:100%;object-fit:cover;display:block}
+#sb.active .ext img{animation:kb1 18s ease-out both}
+#sb.active .plan img{animation:kb2 18s ease-out both}
+@keyframes kb1{from{transform:scale(1.16) translate(2%,1.5%)}to{transform:scale(1)}}
+@keyframes kb2{from{transform:scale(1)}to{transform:scale(1.14) translate(-2%,-1.5%)}}
+#sb .shine{position:absolute;left:-60%;top:-10%;width:36%;height:120%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-18deg);opacity:0}
+#sb.active .ext .shine{animation:shine 1.8s ease-in-out 1.6s both}
+#sb.active .plan .shine{animation:shine 1.8s ease-in-out 2.3s both}
+@keyframes shine{0%{left:-60%;opacity:1}100%{left:130%;opacity:1}}
+
+@media (prefers-reduced-motion:reduce){
+  .bg *,.stars i{animation-duration:.01s!important;animation-iteration-count:1!important}
+}
