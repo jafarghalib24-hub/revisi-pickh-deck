@@ -1,7 +1,7 @@
 # Sampai Ibu Pulang — Pitch Deck Motion
 
 Presentasi motion grafis untuk pitch deck **Sampai Ibu Pulang** (Program Day Care Yatim Dhuafa, by Rumah Yatim).
-Alurnya: video intro → 13 slide beranimasi → penutup ajakan. Setiap pindah slide ada sound "wosh" lembut.
+Alurnya: video intro → 16 slide beranimasi → penutup ajakan. Setiap pindah slide ada sound "wosh" lembut.
 
 ## Cara memakai
 1. Buka `index.html` di **Chrome / Edge** (klik dua kali), lalu klik **Mulai Presentasi**.
@@ -18,13 +18,13 @@ Alurnya: video intro → 13 slide beranimasi → penutup ajakan. Setiap pindah s
 - `index.html` — semua slide (teks ada di sini, mudah diedit)
 - `css/style.css` — desain & animasi · `js/app.js` — transisi, sound, navigasi
 - `assets/intro.mp4` — video pembuka · `assets/prototype.mp4` — video prototype
-- `assets/bangunan-luar.jpg`, `assets/denah-bangunan.jpg` — visual bangunan
+- `assets/rumah-yatim-daycare.jpg` — visual desain Day Care Rumah Yatim (slide Product)
 - `assets/wosh.mp3` — sound efek (versi dilembutkan) · `assets/wosh-asli.mp3` — file asli
 - Ganti video/gambar dengan file bernama sama untuk memperbarui isinya.
 
 ## Urutan slide
-1 Judul · 2 Day Care Yatim Dhuafa · 3 3 Masalah dalam 1 rumah · 4 Solution · 5 Prototype (video) · 6 Market Validasi · 7 Market Size · 8 Product & solution · 9 Visual bangunan · 10 Business Model · 11 Competitive Advantages · 12 Ajakan Rp750 Juta · 13 Penutup
+1 Judul · 2 Day Care Yatim Dhuafa · 3 4 Masalah dalam 1 rumah · 4 Solution · 5 Prototype (video) · 6 Market Validasi · 7 Market Size (dana sosial syariah) · 8 Market Size (Care Economy) · 9 Product & solution · 10 Visual Day Care Rumah Yatim · 11 Business Model · 12 Business Model Canvas · 13 Competitive Advantages · 14 Dampak Jangka Panjang · 15 Ajakan Rp750 Juta · 16 Penutup
 
 ## Catatan
-- Teks slide 1–12 sama persis dengan PPT asli (termasuk ejaan aslinya). Teks baru hanya: chip "Prototype" dan slide penutup (13).
+- Teks slide lain tidak diubah. Slide 3 (4 masalah), Solution, dan visual Day Care mengikuti revisi terbaru; slide 8, 12, dan 14 adalah slide baru (isi dari materi yang diberikan).
 - Penutup (slide 13) angka 385 donor dan @Rp100.000 diambil dari slide Business Model.
