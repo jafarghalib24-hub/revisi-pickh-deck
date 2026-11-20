@@ -1,7 +1,7 @@
 # Sampai Ibu Pulang — Pitch Deck Motion
 
 Presentasi motion grafis untuk pitch deck **Sampai Ibu Pulang** (Program Day Care Yatim Dhuafa, by Rumah Yatim).
-Alurnya: video intro → 16 slide beranimasi → penutup ajakan. Setiap pindah slide ada sound "wosh" lembut.
+Alurnya: video intro → 16 slide beranimasi (disusun mengikuti 7 bagian kerangka presentasi) → ditutup slide ajakan. Setiap pindah slide ada sound "wosh" lembut.
 
 ## Cara memakai
 1. Buka `index.html` di **Chrome / Edge** (klik dua kali), lalu klik **Mulai Presentasi**.
@@ -23,8 +23,14 @@ Alurnya: video intro → 16 slide beranimasi → penutup ajakan. Setiap pindah s
 - Ganti video/gambar dengan file bernama sama untuk memperbarui isinya.
 
 ## Urutan slide
-1 Judul · 2 Day Care Yatim Dhuafa · 3 4 Masalah dalam 1 rumah · 4 Solution · 5 Prototype (video) · 6 Market Validasi · 7 Market Size (dana sosial syariah) · 8 Market Size (Care Economy) · 9 Product & solution · 10 Visual Day Care Rumah Yatim · 11 Business Model · 12 Business Model Canvas · 13 Competitive Advantages · 14 Dampak Jangka Panjang · 15 Ajakan Rp750 Juta · 16 Penutup
+Cover: 1 Judul
+**1. Background & Problem Identification** — 2 Day Care Yatim Dhuafa ("Menjawab:") · 3 4 Masalah dalam 1 rumah · 4 Market Validasi
+**2. Innovation & Proposed Solution** — 5 Solution · 6 Competitive Advantages · 7 Prototype (video) · 8 Manfaat yang Diharapkan · 9 Market Size (Care Economy)
+**3. Program Design & Implementation** — 10 Product & solution (Kolaborasi) · 11 Visual Day Care Rumah Yatim + Standar Day Care
+**4–5. Fundraising & Partnership + Financial Planning** — 12 Market Size (dana sosial syariah) · 13 Business Model · 14 Business Model Canvas
+**6. Impact & Sustainability** — 15 Dampak Jangka Panjang
+**7. Closing & Recommendation** — 16 Ajakan Rp570,6 Juta
 
 ## Catatan
-- Teks slide lain tidak diubah. Slide 3 (4 masalah), Solution, dan visual Day Care mengikuti revisi terbaru; slide 8, 12, dan 14 adalah slide baru (isi dari materi yang diberikan).
-- Penutup (slide 13) angka 385 donor dan @Rp100.000 diambil dari slide Business Model.
+- Revisi terbaru: slide 2 "Apa masalahnya?" → "Menjawab:"; slide Penutup (CTA terakhir) dihapus; narasi "Standar Day Care" (CSP, UU Permensos No. 11 Tahun 2026, Legalitas DP3A, Tata tertib internal RY) ditambahkan di samping foto Product & solution (slide 11); slide 8 "Manfaat yang Diharapkan" ditambahkan dari materi yang diberikan; urutan slide disusun ulang. Isi slide lain tidak diubah.
+- Setiap bagian kerangka diberi komentar `<!-- ########## ... ########## -->` di `index.html`, jadi mudah menemukan dan memindahkan slide.

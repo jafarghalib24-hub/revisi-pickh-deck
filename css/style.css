@@ -354,31 +354,6 @@ svg{display:block;overflow:visible}
 @keyframes crowdin{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 
 /* ============================================================
-   SLIDE 11 — PENUTUP
-   ============================================================ */
-#s11 .bg{background:linear-gradient(180deg,#0F0A14 0%,#2A1220 38%,#8A3A22 78%,#F0A04A 100%)}
-#s11 .halo{left:-160px;top:90px;width:1100px;height:1100px;border-radius:50%;background:radial-gradient(circle,rgba(255,214,130,.55),rgba(255,170,80,.18) 45%,transparent 68%);animation:breathe 6s ease-in-out infinite}
-#s11 .wall{left:80px;top:140px;width:700px;height:830px;background:#1B0E12;border-radius:20px 20px 0 0}
-#s11 .win{left:150px;top:200px;width:560px;height:500px;background:linear-gradient(180deg,#FFEFB8 0%,#FFD27A 60%,#F7AE50 100%);border:14px solid #4A2A20;box-shadow:0 0 140px 50px rgba(255,200,110,.55);animation:breathe 5s ease-in-out infinite}
-#s11 .win:before,#s11 .win:after{content:"";position:absolute;background:#4A2A20}
-#s11 .win:before{left:50%;top:0;bottom:0;width:12px;margin-left:-6px}
-#s11 .win:after{top:50%;left:0;right:0;height:12px;margin-top:-6px}
-#s11 .ground{left:0;top:940px;width:1920px;height:140px;background:linear-gradient(180deg,#2A1410,#120808)}
-#s11 .mom{left:330px;top:520px;width:200px;height:520px;color:#0B0405}
-#s11 .run{top:790px;height:230px;width:90px;color:#0B0405}
-#s11.active .run{animation:runin 3.4s var(--ease) both;animation-delay:calc(1.2s + var(--i)*.35s)}
-@keyframes runin{from{transform:translateX(-380px);opacity:0}15%{opacity:1}to{transform:none;opacity:1}}
-#s11 .txt{left:900px;top:120px;width:930px}
-#s11 .l1{font-size:42px;line-height:1.42;color:var(--cream);font-weight:400}
-#s11 .l2{font-family:'Fraunces',serif;font-style:italic;font-weight:700;font-size:112px;line-height:1.02;color:var(--yellow);margin-top:26px;letter-spacing:-2px;text-shadow:0 8px 40px rgba(0,0,0,.4)}
-#s11 .l3{font-size:38px;line-height:1.4;color:#fff;margin-top:30px;font-weight:500}
-#s11 .ctaw{display:block;margin-top:44px;width:max-content}
-#s11 .cta{display:flex;align-items:center;gap:20px;background:var(--yellow);color:var(--ink);font-size:40px;font-weight:800;padding:24px 52px;border-radius:999px;animation:glowpulse 2.4s infinite 4.5s}
-#s11 .l4{font-size:30px;color:var(--cream);margin-top:22px;font-weight:500}
-#s11 .cta svg{width:46px;height:46px;color:var(--red)}
-#s11 .ft{left:900px;top:972px;font-size:28px;font-weight:600;color:rgba(255,246,227,.9);letter-spacing:.5px}
-
-/* ============================================================
    SLIDE — VIDEO PROTOTYPE
    ============================================================ */
 #sv .sky{inset:0;background:linear-gradient(180deg,#FFF3DA 0%,#FFE0B2 58%,#F8C58A 100%)}
@@ -406,12 +381,22 @@ svg{display:block;overflow:visible}
 #sb .hills{height:260px}
 #sb .chip{left:80px;top:40px;z-index:5}
 #sb .bcard{position:absolute}
-#sb .ext{left:240px;top:128px;width:1320px;height:887px;transform:rotate(-1deg);z-index:2}
+#sb .ext{left:80px;top:140px;width:1170px;height:780px;transform:rotate(-1deg);z-index:2}
 #sb .fr{position:absolute;inset:0;border:10px solid #fff;border-radius:30px;overflow:hidden;box-shadow:0 30px 60px rgba(90,50,20,.38);background:#fff}
 #sb .fr img{width:100%;height:100%;object-fit:cover;display:block}
 #sb .shine{position:absolute;left:-60%;top:-10%;width:36%;height:120%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-18deg);opacity:0}
 #sb.active .ext .shine{animation:shine 1.8s ease-in-out 1.6s both}
 @keyframes shine{0%{left:-60%;opacity:1}100%{left:130%;opacity:1}}
+/* narasi Standar Day Care di samping foto */
+#sb .std{left:1296px;top:140px;width:544px;height:780px;background:var(--olive);border-radius:38px;padding:44px 38px;color:#fff;box-shadow:0 24px 50px rgba(62,88,9,.4);display:flex;flex-direction:column;justify-content:center;z-index:2}
+#sb .std h3{font-size:54px;line-height:1.05;font-weight:800;letter-spacing:-1px;color:var(--yellow);padding-bottom:26px;border-bottom:4px dashed rgba(255,255,255,.35);text-wrap:balance}
+#sb .std ul{list-style:none;margin-top:12px}
+#sb .std li{display:flex;align-items:center;gap:22px;padding:24px 0}
+#sb .std li+li{border-top:2px solid rgba(255,255,255,.18)}
+#sb .std li i{flex:none;width:80px;height:80px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;color:var(--yellow)}
+#sb .std li i svg{width:46px;height:46px}
+#sb .std li span{font-size:34px;line-height:1.25;font-weight:600}
+#sb.active .std li{animation:pop .8s var(--ease) both;animation-delay:calc(1.5s + var(--i)*.4s)}
 
 /* ============================================================
    SLIDE BARU — MARKET SIZE (CARE ECONOMY)
@@ -501,6 +486,27 @@ svg{display:block;overflow:visible}
 #sd .ar{top:858px;width:64px;height:60px}
 #sd .ar svg{width:100%;height:100%;animation:nudge 1.5s ease-in-out infinite}
 #sd .ar1{left:478px}#sd .ar2{left:928px}#sd .ar3{left:1378px}
+
+/* ============================================================
+   SLIDE BARU — MANFAAT YANG DIHARAPKAN
+   ============================================================ */
+#smf .bg{background:linear-gradient(180deg,#FFF8E8 0%,#FFEBC4 66%,#FBD9A0 100%)}
+#smf .hills{height:240px}
+#smf .chip{left:80px;top:40px}
+#smf h2{left:110px;top:118px;font-size:96px;line-height:1.04;font-weight:800;letter-spacing:-2px;color:var(--ink)}
+#smf .k{top:262px;width:540px;height:556px;background:#fff;border-radius:34px;padding:26px 34px;border-top:12px solid var(--red);box-shadow:0 22px 44px rgba(110,60,20,.22)}
+#smf .k.g{border-top-color:var(--olive)}
+#smf .k1{left:110px}#smf .k2{left:690px}#smf .k3{left:1270px}
+#smf .k .no{display:inline-block;min-width:84px;text-align:center;background:var(--red);color:#fff;font-size:32px;font-weight:800;line-height:1;padding:10px 20px;border-radius:14px}
+#smf .k.g .no{background:var(--olive)}
+#smf .k h3{font-size:34px;font-weight:800;line-height:1.14;color:var(--ink);margin-top:18px;min-height:94px;padding-bottom:14px;border-bottom:3px dashed #E3DCC8}
+#smf .k ul{list-style:none;margin-top:6px}
+#smf .k li{position:relative;padding-left:28px;font-size:28px;line-height:1.36;color:#5A5148;margin-top:16px}
+#smf .k li:before{content:"";position:absolute;left:3px;top:.6em;width:11px;height:11px;border-radius:50%;background:var(--olive)}
+#smf .dm{left:110px;top:846px;width:1700px;height:128px;background:var(--olive-d);border-radius:34px;padding:20px 48px;color:#fff;box-shadow:0 20px 44px rgba(62,88,9,.38)}
+#smf .dm small{display:block;font-size:24px;font-weight:700;letter-spacing:3px;color:var(--yellow)}
+#smf .dm p{font-size:35px;line-height:1.2;font-weight:700;margin-top:6px;white-space:nowrap}
+#smf .dm p i{font-style:normal;color:var(--yellow);margin:0 12px}
 
 @media (prefers-reduced-motion:reduce){
   .bg *,.stars i{animation-duration:.01s!important;animation-iteration-count:1!important}
